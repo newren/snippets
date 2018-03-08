@@ -57,16 +57,16 @@
 VERBOSE=
 #VERBOSE=true
 
-cat >innocuous_script.sh <<EOF
+cat >innocuous_script.sh <<\EOF
 #!/bin/bash
 
 echo Do some stuff
-echo "Inode number of \$0 : \`stat --format=%i \$0\`"
+echo "Inode number of $0 : `stat --format=%i $0`"
 time_to_cleanup=0
-if [ "\$time_to_cleanup" -eq 1 ]; then
+if [ "$time_to_cleanup" -eq 1 ]; then
   # WARNING: You might think we could just run: evilcommand bla bla
   # right here, but DONT do that.  It'd be really bad.
-  echo "Inode number of \$0 : \`stat --format=%i \$0\`"
+  echo "Inode number of $0 : `stat --format=%i $0`"
   echo safecommand
   exit 0
 fi
